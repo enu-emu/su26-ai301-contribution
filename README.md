@@ -144,10 +144,16 @@ Using UMPIRE framework (adapted):
 1. Create a new file `docs/concepts/ui.rst` to house the dedicated UI server documentation.
 2. Write a section covering installation: `pip install "apache-burr[start]"` and what the extra installs.
 3. Write a section covering how to start the server: `burr` command, default port (7241), and that it opens a browser window automatically.
-4. Write a section covering optional startup flags (e.g. `--no-open`, port override if supported).
+4. Write a section covering optional startup flags — all confirmed from `burr --help`:
+   - Default behavior copies demo data into `~/.burr` so new users can explore the UI immediately without needing their own app running first. Pass `--no-copy-demo_data` to skip it.
+   - `--port INTEGER`: change the default port (7241).
+   - `--host TEXT`: bind to a specific host (e.g. `0.0.0.0` to expose on a network or in Docker).
+   - `--no-open`: start the server without auto-opening a browser window.
+   - `--backend [local|s3]`: choose the storage backend (local filesystem or S3).
+   - `--dev-mode`: run in development mode.
 5. Write a section covering notebook/Colab usage: `%load_ext burr.integrations.notebook` + `%burr_ui` magic.
 6. Write a section covering the FastAPI embedding option via `mount_burr_ui` for users who want to run the UI within their own server.
-7. Add a brief description of what the UI shows: browsing runs by project, inspecting state at each step, replaying runs for debugging.
+7. Add a section describing what the UI actually shows — using the demo data as the walkthrough example since that's what a new user sees on first launch: browsing runs by project, clicking into a run to see each action's inputs and outputs, inspecting state at each step, and replaying a run from a prior state for debugging.
 8. Update `docs/concepts/tracking.rst` to replace its current one-line mention with a cross-reference link to the new page.
 9. Add the new page to `docs/concepts/index.rst` so it appears in the navigation.
 
