@@ -5,7 +5,7 @@
 **Contribution Number:** 1  
 **Student:** Ena Salazar
 **Issue:** [apache/burr #272 — Add documentation on how to run the Burr UI server](https://github.com/apache/burr/issues/272)  
-**Status:** Phase II — Complete
+**Status:** Phase III — Complete
 
 ---
 
@@ -173,42 +173,45 @@ Using UMPIRE framework (adapted):
 
 ### Unit Tests
 
-- [ ] Test case 1: [Description]
-- [ ] Test case 2: [Description]
-- [ ] Test case 3: [Description]
+Not applicable — this is a documentation-only change. No source code was modified.
 
 ### Integration Tests
 
-- [ ] Integration scenario 1
-- [ ] Integration scenario 2
+Not applicable.
 
 ### Manual Testing
 
-[What you tested manually and results]
+- Ran `make html` inside `docs/` — Sphinx build passed with 0 new warnings from `ui.rst` or `index.rst` (13 pre-existing warnings from other files were unchanged)
+- Confirmed `ui.rst` appears under "Concepts" in the built HTML navigation
+- Ran `es_test_notebook.ipynb` end to end — counter app ran to `Final count: 5` and the run appeared in the UI at `localhost:7241` under `es-test-counter`
+- Manually verified every UI feature described in the "What You Can Do" section using the demo projects
 
 ---
 
 ## Implementation Notes
 
-### Week [X] Progress
+### Week 1 Progress
 
-[What you built this week, challenges faced, decisions made]
+Explored the Burr codebase to understand how the UI server works end to end. Confirmed the documentation gap: `tracking.rst` had one line mentioning `burr`, nothing more. Set up a local virtual environment, installed `apache-burr[start]`, and got the UI server running at `localhost:7241`. Ran into two environment issues: a pandas/Python 3.13 incompatibility (fixed with `pip install --upgrade pandas`) and a missing frontend build when running `burr` from inside the source directory (fixed by running `burr` from the home directory). Explored all four demo projects in the UI to understand what it actually shows before writing a word of documentation.
 
-### Week [Y] Progress
+### Week 2 Progress
 
-[Continue documenting as you work]
+Built a test Jupyter notebook (`es_test_notebook.ipynb`) to verify the full tracking flow — created a counter state machine with `.with_tracker()`, ran it, and confirmed the run appeared in the UI under `es-test-counter`. This gave me firsthand knowledge of every feature described in the docs. Created `docs/concepts/ui.rst` with installation, CLI options (table format), demo data walkthrough, "What You Can Do" section with step-by-step Try-it instructions for each UI feature, notebook launch, FastAPI embedding, and how to wire up tracking. Registered the page in `docs/concepts/index.rst`. Ran a Sphinx build to confirm zero new warnings. Committed and pushed to the `docs/burr-ui-server` branch.
 
 ### Code Changes
 
-- **Files modified:** [List]
-- **Key commits:** [Links to important commits]
-- **Approach decisions:** [Why you chose certain approaches]
+- **Files created:** `docs/concepts/ui.rst` — 271 lines covering the full UI server workflow
+- **Files modified:** `docs/concepts/index.rst` — added `ui` to the concepts toctree
+- **Key commits:**
+  - [`08827c4`](https://github.com/enu-emu/burr/commit/08827c4) — Add burr-fork venv to .gitignore
+  - [`e344503`](https://github.com/enu-emu/burr/commit/e344503) — docs: add Burr UI server documentation (issue #272)
+- **Approach decisions:** Created a new file rather than expanding `tracking.rst` to keep concerns separated — the tracking client and the UI server are distinct enough to warrant their own pages. Used a list-table for CLI flags to make them scannable. Added "Try it:" instructions for every UI feature so readers have something concrete to do rather than just passive reading.
 
 ---
 
 ## Pull Request
 
-**PR Link:** [GitHub PR URL when submitted]
+**PR Link:** [GitHub PR URL — to be submitted]
 
 **PR Description:** [Draft or final PR description - much of the content above can be adapted]
 
