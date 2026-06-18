@@ -211,7 +211,7 @@ Built a test Jupyter notebook (`es_test_notebook.ipynb`) to verify the full trac
 
 ## Pull Request
 
-**PR Link:** [GitHub PR URL — to be submitted]
+**PR Link:** [apache/burr #810](https://github.com/apache/burr/pull/810)
 
 **PR Description:** [Draft or final PR description - much of the content above can be adapted]
 
