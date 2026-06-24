@@ -5,7 +5,7 @@
 **Contribution Number:** 1  
 **Student:** Ena Salazar
 **Issue:** [apache/burr #272 — Add documentation on how to run the Burr UI server](https://github.com/apache/burr/issues/272)  
-**Status:** Phase III — Complete
+**Status:** Phase IV — Complete
 
 ---
 
@@ -213,14 +213,23 @@ Built a test Jupyter notebook (`es_test_notebook.ipynb`) to verify the full trac
 
 **PR Link:** [apache/burr #810](https://github.com/apache/burr/pull/810)
 
-**PR Description:** [Draft or final PR description - much of the content above can be adapted]
+**PR Description:**
+
+What does this PR do?: Creates `docs/concepts/ui.rst`, a dedicated documentation page for the Burr UI server covering installation, CLI options with examples, a walkthrough of every UI feature with step-by-step "Try it" instructions, notebook/Colab launch, FastAPI embedding, and how to wire up tracking so your app appears in the UI. Registers the new page in `docs/concepts/index.rst`.
+
+Why was this PR needed?: Issue #272 reported that no dedicated documentation existed for the Burr UI server. The only mention was a single line in `tracking.rst` saying to run `burr` in the terminal — no installation steps, no CLI options, no description of what the UI shows or how to use it.
+
+What are the relevant issue numbers?: Closes #272
+
+Does this PR meet the acceptance criteria?:
+- [x] No breaking changes introduced
+- [x] Documentation updated
 
 **Maintainer Feedback:**
 
-- [Date]: [Summary of feedback received]
-- [Date]: [How you addressed it]
+- Awaiting first review from @skrawcz
 
-**Status:** [Awaiting review / Iterating / Approved / Merged]
+**Status:** Awaiting review
 
 ---
 
@@ -228,20 +237,21 @@ Built a test Jupyter notebook (`es_test_notebook.ipynb`) to verify the full trac
 
 ### Technical Skills Gained
 
-[What you learned technically]
+Learned how Sphinx documentation works — `.rst` files, toctrees, cross-references, and running `make html` to verify builds. Learned how Burr's state machine model works end to end: actions, transitions using `expr()` and `default`, and how `.with_tracker()` connects a running app to the UI server. Got hands-on experience with the full open source contribution workflow: forking, branching, committing, pushing, and opening a PR against an upstream repository.
 
 ### Challenges Overcome
 
-[What was hard and how you solved it]
+Two environment issues blocked progress before the actual writing could begin. First, a Python 3.13 / pandas incompatibility caused the server to crash on import — fixed with `pip install --upgrade pandas`. Second, running `burr` from inside the source directory caused it to pick up the local source code instead of the installed package, which meant the pre-built React frontend was missing. Tracking down the root cause of that second issue — understanding why Python was finding the wrong package — was the most difficult debugging moment of this contribution.
 
 ### What I'd Do Differently Next Time
 
-[Reflection on your process]
+Before reading any code, I would verify the tool actually works on my machine first. Both blockers were setup problems that had nothing to do with the contribution itself, and they took significant time to resolve. Getting the tool running end to end before exploring the codebase would have let me focus on the actual writing sooner.
 
 ---
 
 ## Resources Used
 
-- [Link to helpful documentation]
-- [Tutorial or Stack Overflow post that helped]
-- [GitHub issues or discussions that helped]
+- [apache/burr repository](https://github.com/apache/burr)
+- [Burr documentation](https://burr.dagworks.io/)
+- [Sphinx documentation](https://www.sphinx-doc.org/)
+- [Issue #272](https://github.com/apache/burr/issues/272)
